@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Pour Nancy ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    overflow: hidden;
+}
+
+/* CARTE */
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 35px;
+    border-radius: 25px;
+    text-align: center;
+    width: 320px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2;
+}
+
+h1 { margin-bottom: 15px; }
+
+p {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* COEUR */
+.heart {
+    font-size: 45px;
+    margin: 15px 0;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* BOUTON */
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    color: #ff4d6d;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* MESSAGE CACHE */
+.surprise {
+    display: none;
+    margin-top: 15px;
+    font-size: 16px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* SIGNATURE */
+.a {
+    margin-top: 10px;
+    font-size: 24px;
+    font-style: italic;
+    letter-spacing: 3px;
+    opacity: 0.85;
+}
+
+/* COEURS QUI TOMBENT */
+.falling-heart {
+    position: absolute;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* FADE */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Pour toi Nancy 💕</h1>
+
+    <p>
+        Je sais que tu ne te sens pas très bien aujourd’hui…<br>
+        Souviens toi de la magnifique personne que t'es. <br>
+        Si je pouvais, je t'apporterais un gros câlin. <br>
+        Repose-toi et prends soin de toi 🤍
+    </p>
+
+    <div class="heart">❤️</div>
+
+    <button onclick="showSurprise()">Clique ici 💕</button>
+
+    <div class="surprise" id="msg">
+        Tu comptes beaucoup pour moi… vraiment 💖
+    </div>
+
+</div>
+
+<script>
+function showSurprise() {
+    document.getElementById("msg").style.display = "block";
+
+    // pluie de coeurs
+    for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("falling-heart");
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }
+}
+</script>
+
+</body>
+</html>
